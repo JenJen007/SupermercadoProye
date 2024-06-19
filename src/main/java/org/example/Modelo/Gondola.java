@@ -1,5 +1,4 @@
 package org.example.Modelo;
-
 import java.util.ArrayList;
 
 public class Gondola {
@@ -10,7 +9,7 @@ public class Gondola {
     private int espacioLibre;
     private boolean extremo;
     private boolean completo_10;
-    private ArrayList<Articulo> articulo = new ArrayList<>();
+    private ArrayList<Articulo> articulos;
 
     //Constructor
 
@@ -21,10 +20,10 @@ public class Gondola {
         this.espacioLibre = espacioLibre;
         this.extremo = extremo;
         this.completo_10 = completo_10;
+        this.articulos = new ArrayList<>();
     }
 
     //Getter&Setter
-
     public int getNroUbicacion() {
         return nroUbicacion;
     }
@@ -74,18 +73,18 @@ public class Gondola {
     }
 
     public ArrayList<Articulo> getArticulo() {
-        return articulo;
+        return articulos;
     }
 
     public void setArticulo(ArrayList<Articulo> articulo) {
-        this.articulo = articulo;
+        this.articulos = articulo;
     }
 
-    //Crear métodos correspoondientes a la lógica
+   /*/Crear métodos correspoondientes a la lógica
     public void agregarArticulo(Articulo articulo) {
         if (this.espacioLibre > 0) {
-            this.articulo.add(articulo);
+            this.articulos.add(articulo);
             this.espacioLibre--;
         }
-    }
+    }*/
 }

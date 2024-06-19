@@ -1,5 +1,4 @@
 package org.example.Modelo;
-
 import java.util.ArrayList;
 
 public class Articulo {
@@ -8,9 +7,13 @@ public class Articulo {
     private int stockMinimo;
     private boolean comprar;
     private ArrayList<Orden> orden = new ArrayList<>();
-    private ArrayList<Gondola>gondolas = new ArrayList<>();
+    private ArrayList<Gondola> gondolas = new ArrayList<>();
 
     //Crear constructor
+    public Articulo() {
+        this.orden = new ArrayList<>();
+        this.gondolas = new ArrayList<>();
+    }
 
     public Articulo(int nroSerie, int stockMinimo, boolean comprar) {
         this.nroSerie = nroSerie;
@@ -19,7 +22,6 @@ public class Articulo {
     }
 
     //Getter&Setter
-
     public int getNroSerie() {
         return nroSerie;
     }
@@ -61,11 +63,11 @@ public class Articulo {
     }
 
     //Crear métodos correspondientes a la lógica
-    public void verificarStock() {
+    /*public void verificarStock() {
         if (this.stockMinimo > this.gondolas.size()) {
             this.comprar = true;
         } else {
             this.comprar = false;
         }
-    }
+    }*/
 }
