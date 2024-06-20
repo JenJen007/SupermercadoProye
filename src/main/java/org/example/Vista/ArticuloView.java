@@ -18,9 +18,9 @@ public class ArticuloView extends JFrame {
 
 
 
-    public void setController(ArticuloController controller) {
+   /* public void setController(ArticuloController controller) {
         this.controller = controller;
-    }
+    }*/
 
     public ArticuloView(ArticuloController controller) {
         this.controller = controller;

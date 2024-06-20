@@ -16,13 +16,16 @@ public class GondolaView extends JFrame {
     private JCheckBox disponibleCheckBox, extremoCheckBox, completo10CheckBox;
     private JTextArea displayArea;
 
-    public void setController(GondolaController controller) {
+   /* public void setController(GondolaController controller) {
         this.controller = controller;
-    }
+    }*/
 
     public GondolaView(GondolaController controller) {
         this.controller = controller;
-
+        initialize();
+        controller.mostrarGondolas();
+    }
+    private void initialize(){
         setTitle("Gestión de Góndolas");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

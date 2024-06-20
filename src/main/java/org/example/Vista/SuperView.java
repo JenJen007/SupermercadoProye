@@ -93,7 +93,7 @@ public class SuperView extends JFrame {
         buttonPanel.add(ordenButton);
 
         add(buttonPanel, BorderLayout.CENTER);
-
+         pack();
         setVisible(true);
     }
 

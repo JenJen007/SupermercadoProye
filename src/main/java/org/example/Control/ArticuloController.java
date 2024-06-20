@@ -5,23 +5,20 @@ import org.example.Modelo.Articulo;
 import org.example.Vista.ArticuloView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ArticuloController {
-    private ArticuloView view;
+    //private ArticuloView view;
     private ArticuloDAO articuloDAO;
 
-    public ArticuloController(ArticuloView view) {
-        this.view = view;
+    public ArticuloController() {
         this.articuloDAO = new ArticuloDAO();
     }
 
-    public ArticuloController() {
 
-    }
-
-    public void setView(ArticuloView view) {
+    /*public void setView(ArticuloView view) {
         this.view = view;
-    }
+    }*/
 
     public void crearArticulo(int nroSerie, int stockMinimo, boolean comprar) {
         Articulo articulo = new Articulo(nroSerie, stockMinimo, comprar);
@@ -47,11 +44,14 @@ public class ArticuloController {
         }
     }
 
-    public void mostrarArticulos() {
+   /* public void mostrarArticulos() {
         ArrayList<Articulo> articulos = articuloDAO.listarArticulos();
         view.mostrarArticulos(articulos);
-    }
+    }*/
 
+    public List<Articulo> mostrarArticulos() {
+        return articuloDAO.listarArticulos();
+    }
     private void actualizarVista() {
         mostrarArticulos();
     }

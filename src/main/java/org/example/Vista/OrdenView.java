@@ -16,13 +16,16 @@ public class OrdenView extends JFrame {
     private JTextField nroSerieArticuloField, cantidadAComprarField, fechaField;
     private JTextArea displayArea;
 
-    public void setController(OrdenController controller) {
+    /*public void setController(OrdenController controller) {
         this.controller = controller;
-    }
+    }*/
 
     public OrdenView(OrdenController controller) {
         this.controller = controller;
-
+        initialize();
+        controller.mostrarOrdenes();
+    }
+    private void initialize(){
         setTitle("Gestión de Órdenes");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

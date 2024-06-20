@@ -1,28 +1,27 @@
 package org.example.Control;
 
 import org.example.Dao.GondolaDAO;
+import org.example.Modelo.Articulo;
 import org.example.Modelo.Gondola;
 import org.example.Vista.GondolaView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GondolaController {
-    private GondolaView view;
+   // private GondolaView view;
     private GondolaDAO gondolaDAO;
 
-    public GondolaController(GondolaView view) {
-        this.view = view;
+    public GondolaController() {
         this.gondolaDAO = new GondolaDAO();
     }
 
-    public GondolaController() {
 
-    }
 
-    public void setView(GondolaView view) {
+   /* public void setView(GondolaView view) {
         this.view = view;
     }
-
+*/
     public void crearGondola(int nroUbicacion, String sector, boolean disponible, int espacioLibre, boolean extremo, boolean completo_10) {
         Gondola gondola = new Gondola(nroUbicacion, sector, disponible, espacioLibre, extremo, completo_10);
         gondolaDAO.crearGondola(gondola);
@@ -50,10 +49,13 @@ public class GondolaController {
         }
     }
 
-    public void mostrarGondolas() {
+   /* public void mostrarGondolas() {
         ArrayList<Gondola> gondolas = gondolaDAO.listarGondolas();
         view.mostrarGondolas(gondolas);
-    }
+    }*/
+   public List<Gondola> mostrarGondolas() {
+       return gondolaDAO.listarGondolas();
+   }
     private void actualizarVista() {
         mostrarGondolas();
     }

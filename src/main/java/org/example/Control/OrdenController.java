@@ -7,23 +7,20 @@ import org.example.Modelo.Orden;
 import org.example.Vista.OrdenView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class OrdenController {
-    private OrdenView view;
+    //private OrdenView view;
     private OrdenDAO ordenDAO;
 
-    public OrdenController(OrdenView view) {
-        this.view = view;
+    public OrdenController() {
         this.ordenDAO = new OrdenDAO();
     }
 
-    public OrdenController() {
 
-    }
-
-    public void setView(OrdenView view) {
+    /*public void setView(OrdenView view) {
         this.view = view;
-    }
+    }*/
 
     public void crearOrden(int nroSerieArticulo, int cantidadAComprar, java.sql.Date fecha) {
         Orden orden = new Orden(nroSerieArticulo,cantidadAComprar,fecha);
@@ -49,9 +46,12 @@ public class OrdenController {
         }
     }
 
-    public void mostrarOrdenes() {
+    /*public void mostrarOrdenes() {
         ArrayList<Orden> ordenes = ordenDAO.listarOrdenes();
         view.mostrarOrdenes(ordenes);
+    }*/
+    public List<Orden> mostrarOrdenes() {
+        return ordenDAO.listarOrdenes();
     }
     private void actualizarVista() {
         mostrarOrdenes();
