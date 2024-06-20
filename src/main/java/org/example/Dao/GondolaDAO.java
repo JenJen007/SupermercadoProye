@@ -45,15 +45,15 @@ public class GondolaDAO {
 
     // Actualizar Góndola
     public void actualizarGondola(Gondola gondola) {
-        String query = "UPDATE gondolas SET nroUbicacion = ?, sector = ?, disponible = ?, espacioLibre = ?, extremo = ?, completo_10 = ? WHERE  id = ?";
+        String query = "UPDATE gondolas SET  sector = ?, disponible = ?, espacioLibre = ?, extremo = ?, completo_10 = ? WHERE  nroUbicacion = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, gondola.getNroUbicacion());
-            stmt.setString(2, gondola.getSector());
-            stmt.setBoolean(3, gondola.isDisponible());
-            stmt.setInt(4, gondola.getEspacioLibre());
-            stmt.setBoolean(5, gondola.isExtremo());
-            stmt.setBoolean(6, gondola.isCompleto_10());
+            stmt.setString(1, gondola.getSector());
+            stmt.setBoolean(2, gondola.isDisponible());
+            stmt.setInt(3, gondola.getEspacioLibre());
+            stmt.setBoolean(4, gondola.isExtremo());
+            stmt.setBoolean(5, gondola.isCompleto_10());
+            stmt.setInt(6, gondola.getNroUbicacion());
             stmt.executeUpdate();
             stmt.executeUpdate();
         } catch (SQLException e) {

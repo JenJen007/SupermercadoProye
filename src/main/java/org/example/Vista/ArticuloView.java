@@ -135,4 +135,8 @@ public class ArticuloView extends JFrame {
             displayArea.append("NroSerie: " + articulo.getNroSerie() + ", Stock Min: " + articulo.getStockMinimo() + ", Comprar: " + articulo.isComprar() + "\n");
         }
     }
+    public void mostrarError(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
 }
