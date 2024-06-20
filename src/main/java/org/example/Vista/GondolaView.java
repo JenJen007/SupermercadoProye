@@ -1,4 +1,3 @@
-
 package org.example.Vista;
 
 import org.example.Control.GondolaController;
@@ -16,22 +15,19 @@ public class GondolaView extends JFrame {
     private JCheckBox disponibleCheckBox, extremoCheckBox, completo10CheckBox;
     private JTextArea displayArea;
 
-   /* public void setController(GondolaController controller) {
-        this.controller = controller;
-    }*/
-
     public GondolaView(GondolaController controller) {
         this.controller = controller;
         initialize();
         controller.mostrarGondolas();
     }
-    private void initialize(){
+
+    private void initialize() {
         setTitle("Gestión de Góndolas");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        JPanel inputPanel = new JPanel(new GridLayout(5, 2));
+        JPanel inputPanel = new JPanel(new GridLayout(6, 2));
         inputPanel.add(new JLabel("Número de Ubicación:"));
         nroUbicacionField = new JTextField();
         inputPanel.add(nroUbicacionField);
@@ -60,39 +56,89 @@ public class GondolaView extends JFrame {
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int nroUbicacion = Integer.parseInt(nroUbicacionField.getText());
-                String sector = sectorField.getText();
-                boolean disponible = disponibleCheckBox.isSelected();
-                int espacioLibre = Integer.parseInt(espacioLibreField.getText());
-                boolean extremo = extremoCheckBox.isSelected();
-                boolean completo10 = completo10CheckBox.isSelected();
-                controller.crearGondola( nroUbicacion, sector, disponible, espacioLibre, extremo, completo10);
+                try {
+                    String nroUbicacionText = nroUbicacionField.getText();
+                    String sector = sectorField.getText();
+                    String espacioLibreText = espacioLibreField.getText();
+
+                    if (nroUbicacionText.isEmpty() || sector.isEmpty() || espacioLibreText.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+
+                    int nroUbicacion = Integer.parseInt(nroUbicacionText);
+                    int espacioLibre = Integer.parseInt(espacioLibreText);
+                    boolean disponible = disponibleCheckBox.isSelected();
+                    boolean extremo = extremoCheckBox.isSelected();
+                    boolean completo10 = completo10CheckBox.isSelected();
+
+                    controller.crearGondola(nroUbicacion, sector, disponible, espacioLibre, extremo, completo10);
+                    JOptionPane.showMessageDialog(null, "Góndola agregada exitosamente");
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Número de Ubicación y Espacio Libre deben ser números válidos", "Error", JOptionPane.ERROR_MESSAGE);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Ocurrió un error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
         inputPanel.add(addButton);
+
         JButton updateButton = new JButton("Actualizar Góndola");
         updateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int nroUbicacion = Integer.parseInt(nroUbicacionField.getText());
-                String sector = sectorField.getText();
-                boolean disponible = disponibleCheckBox.isSelected();
-                int espacioLibre = Integer.parseInt(espacioLibreField.getText());
-                boolean extremo = extremoCheckBox.isSelected();
-                boolean completo_10 = completo10CheckBox.isSelected();
-                controller.actualizarGondola( nroUbicacion, sector, disponible, espacioLibre, extremo, completo_10);
+                try {
+                    String nroUbicacionText = nroUbicacionField.getText();
+                    String sector = sectorField.getText();
+                    String espacioLibreText = espacioLibreField.getText();
+
+                    if (nroUbicacionText.isEmpty() || sector.isEmpty() || espacioLibreText.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+
+                    int nroUbicacion = Integer.parseInt(nroUbicacionText);
+                    int espacioLibre = Integer.parseInt(espacioLibreText);
+                    boolean disponible = disponibleCheckBox.isSelected();
+                    boolean extremo = extremoCheckBox.isSelected();
+                    boolean completo10 = completo10CheckBox.isSelected();
+
+                    controller.actualizarGondola(nroUbicacion, sector, disponible, espacioLibre, extremo, completo10);
+                    JOptionPane.showMessageDialog(null, "Góndola actualizada exitosamente");
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Número de Ubicación y Espacio Libre deben ser números válidos", "Error", JOptionPane.ERROR_MESSAGE);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Ocurrió un error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
         inputPanel.add(updateButton);
+
         JButton deleteButton = new JButton("Eliminar Góndola");
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int  nroUbicacion = Integer.parseInt(nroUbicacionField.getText());
-                controller.eliminarGondola(nroUbicacion);
+                try {
+                    String nroUbicacionText = nroUbicacionField.getText();
+
+                    if (nroUbicacionText.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "El campo de Número de Ubicación debe estar lleno", "Error", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+
+                    int nroUbicacion = Integer.parseInt(nroUbicacionText);
+
+                    controller.eliminarGondola(nroUbicacion);
+                    JOptionPane.showMessageDialog(null, "Góndola eliminada exitosamente");
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Número de Ubicación debe ser un número válido", "Error", JOptionPane.ERROR_MESSAGE);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Ocurrió un error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
         inputPanel.add(deleteButton);
+
         add(inputPanel, BorderLayout.NORTH);
 
         displayArea = new JTextArea();
@@ -106,7 +152,7 @@ public class GondolaView extends JFrame {
     public void mostrarGondolas(ArrayList<Gondola> gondolas) {
         displayArea.setText("");
         for (Gondola gondola : gondolas) {
-            displayArea.append( "NroUbicacion: " + gondola.getNroUbicacion() + ", Sector: " + gondola.getSector() + ", Disponible: " + gondola.isDisponible() + ", Espacio Libre: " + gondola.getEspacioLibre() + ", Extremo: " + gondola.isExtremo() + ", Completo 10%: " + gondola.isCompleto_10() + "\n");
+            displayArea.append("NroUbicacion: " + gondola.getNroUbicacion() + ", Sector: " + gondola.getSector() + ", Disponible: " + gondola.isDisponible() + ", Espacio Libre: " + gondola.getEspacioLibre() + ", Extremo: " + gondola.isExtremo() + ", Completo 10%: " + gondola.isCompleto_10() + "\n");
         }
     }
 }
