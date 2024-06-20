@@ -1,3 +1,4 @@
+
 package org.example.Vista;
 
 import org.example.Control.ArticuloController;
@@ -28,28 +29,28 @@ public class SuperView extends JFrame {
         JMenuBar menuBar = new JMenuBar();
         JMenu menu = new JMenu("Opciones");
 
-        JMenuItem menuItemArticulo = new JMenuItem("Articulo", new ImageIcon("path_to_articulo_icon"));
+        JMenuItem menuItemArticulo = new JMenuItem("Articulo", new ImageIcon("C://Users//Tity Lacoste//IdeaProjects//ParcialSupermercado//src//img//grocery.png"));
         menuItemArticulo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new ArticuloView(articuloController);
             }
         });
 
-        JMenuItem menuItemGondola = new JMenuItem("Gondola", new ImageIcon("path_to_gondola_icon"));
+        JMenuItem menuItemGondola = new JMenuItem("Gondola", new ImageIcon("C://Users//Tity Lacoste//IdeaProjects//ParcialSupermercado//src//img//retail-store.png"));
         menuItemGondola.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new GondolaView(gondolaController);
             }
         });
 
-        JMenuItem menuItemOrden = new JMenuItem("Orden", new ImageIcon("path_to_orden_icon"));
+        JMenuItem menuItemOrden = new JMenuItem("Orden", new ImageIcon("C://Users//Tity Lacoste//IdeaProjects//ParcialSupermercado//src//img//purchase-order.png"));
         menuItemOrden.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new OrdenView(ordenController);
             }
         });
 
-        JMenuItem menuItemSalir = new JMenuItem("Salir", new ImageIcon("path_to_salir_icon"));
+        JMenuItem menuItemSalir = new JMenuItem("Salir", new ImageIcon("C://Users//Tity Lacoste//IdeaProjects//ParcialSupermercado//src//img//exit.png"));
         menuItemSalir.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
@@ -98,4 +99,3 @@ public class SuperView extends JFrame {
 
 
 }
-

@@ -1,3 +1,4 @@
+
 package org.example.Dao;
 
 import org.example.DatabaseConnection;
@@ -11,14 +12,14 @@ public class GondolaDAO {
     public void crearGondola(Gondola gondola) {
         String query = "INSERT INTO gondolas (nroUbicacion, sector, disponible, espacioLibre, extremo, completo_10) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(query)) {
-                stmt.setInt(1, gondola.getNroUbicacion());
-                stmt.setString(2, gondola.getSector());
-                stmt.setBoolean(3, gondola.isDisponible());
-                stmt.setInt(4, gondola.getEspacioLibre());
-                stmt.setBoolean(5, gondola.isExtremo());
-                stmt.setBoolean(6, gondola.isCompleto_10());
-                stmt.executeUpdate();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, gondola.getNroUbicacion());
+            stmt.setString(2, gondola.getSector());
+            stmt.setBoolean(3, gondola.isDisponible());
+            stmt.setInt(4, gondola.getEspacioLibre());
+            stmt.setBoolean(5, gondola.isExtremo());
+            stmt.setBoolean(6, gondola.isCompleto_10());
+            stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -29,13 +30,13 @@ public class GondolaDAO {
         Gondola gondola = null;
         String query = "SELECT * FROM gondolas WHERE nroUbicacion = ?";
         try (Connection conn = DatabaseConnection.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(query)) {
-                stmt.setInt(1, nroUbicacion);
-                try (ResultSet rs = stmt.executeQuery()) {
-                    if (rs.next()) {
-                        gondola = new Gondola(rs.getInt("nroUbicacion"), rs.getString("sector"), rs.getBoolean("disponible"), rs.getInt("espacioLibre"), rs.getBoolean("extremo"), rs.getBoolean("completo_10"));
-                    }
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, nroUbicacion);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    gondola = new Gondola(rs.getInt("nroUbicacion"), rs.getString("sector"), rs.getBoolean("disponible"), rs.getInt("espacioLibre"), rs.getBoolean("extremo"), rs.getBoolean("completo_10"));
                 }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -46,7 +47,7 @@ public class GondolaDAO {
     public void actualizarGondola(Gondola gondola) {
         String query = "UPDATE gondolas SET nroUbicacion = ?, sector = ?, disponible = ?, espacioLibre = ?, extremo = ?, completo_10 = ? WHERE  id = ?";
         try (Connection conn = DatabaseConnection.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(query)) {
+             PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setInt(1, gondola.getNroUbicacion());
             stmt.setString(2, gondola.getSector());
             stmt.setBoolean(3, gondola.isDisponible());
@@ -54,7 +55,7 @@ public class GondolaDAO {
             stmt.setBoolean(5, gondola.isExtremo());
             stmt.setBoolean(6, gondola.isCompleto_10());
             stmt.executeUpdate();
-                stmt.executeUpdate();
+            stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -64,9 +65,9 @@ public class GondolaDAO {
     public void eliminarGondola(int nroUbicacion) {
         String query = "DELETE FROM gondolas WHERE nroUbicacion = ?";
         try (Connection conn = DatabaseConnection.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(query)) {
-                stmt.setInt(1, nroUbicacion);
-                stmt.executeUpdate();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, nroUbicacion);
+            stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -77,12 +78,12 @@ public class GondolaDAO {
         ArrayList<Gondola> gondolas = new ArrayList<>();
         String query = "SELECT * FROM gondolas";
         try (Connection conn = DatabaseConnection.getConnection();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(query)) {
-                while (rs.next()) {
-                    Gondola gondola = new Gondola(rs.getInt("nroUbicacion"), rs.getString("sector"), rs.getBoolean("disponible"), rs.getInt("espacioLibre"), rs.getBoolean("extremo"), rs.getBoolean("completo_10"));
-                    gondolas.add(gondola);
-                }
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+            while (rs.next()) {
+                Gondola gondola = new Gondola(rs.getInt("nroUbicacion"), rs.getString("sector"), rs.getBoolean("disponible"), rs.getInt("espacioLibre"), rs.getBoolean("extremo"), rs.getBoolean("completo_10"));
+                gondolas.add(gondola);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -93,11 +94,11 @@ public class GondolaDAO {
         ArrayList<Gondola> gondolas = new ArrayList<>();
         String query = "SELECT * FROM gondolas WHERE disponible = true";
         try (Connection conn = DatabaseConnection.getConnection();
-            Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
-                while (rs.next()) {
-                    Gondola gondola = new Gondola(rs.getInt("nroUbicacion"), rs.getString("sector"), rs.getBoolean("disponible"), rs.getInt("espacioLibre"), rs.getBoolean("extremo"), rs.getBoolean("completo_10"));
-                    gondolas.add(gondola);
-                }
+             Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+            while (rs.next()) {
+                Gondola gondola = new Gondola(rs.getInt("nroUbicacion"), rs.getString("sector"), rs.getBoolean("disponible"), rs.getInt("espacioLibre"), rs.getBoolean("extremo"), rs.getBoolean("completo_10"));
+                gondolas.add(gondola);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -108,10 +109,10 @@ public class GondolaDAO {
     public void actualizarDisponibilidad(boolean nuevaDisponibilidad,Gondola gondola) {
         String query = "UPDATE gondolas SET disponible = ? WHERE nroUbicacion = ?";
         try (Connection conn = DatabaseConnection.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(query)) {
-                stmt.setBoolean(1, nuevaDisponibilidad);
-                stmt.setInt(2, gondola.getNroUbicacion());
-                stmt.executeUpdate();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setBoolean(1, nuevaDisponibilidad);
+            stmt.setInt(2, gondola.getNroUbicacion());
+            stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -122,14 +123,14 @@ public class GondolaDAO {
         ArrayList<Gondola> gondolas = new ArrayList<>();
         String query = "SELECT * FROM gondolas WHERE sector = ?";
         try (Connection conn = DatabaseConnection.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(query)) {
-                stmt.setString(1, sector);
-                try (ResultSet rs = stmt.executeQuery()) {
-                    while (rs.next()) {
-                        Gondola gondola = new Gondola(rs.getInt("nroUbicacion"), rs.getString("sector"), rs.getBoolean("disponible"), rs.getInt("espacioLibre"), rs.getBoolean("extremo"), rs.getBoolean("completo_10"));
-                        gondolas.add(gondola);
-                    }
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, sector);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Gondola gondola = new Gondola(rs.getInt("nroUbicacion"), rs.getString("sector"), rs.getBoolean("disponible"), rs.getInt("espacioLibre"), rs.getBoolean("extremo"), rs.getBoolean("completo_10"));
+                    gondolas.add(gondola);
                 }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

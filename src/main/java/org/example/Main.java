@@ -19,17 +19,10 @@ public class Main {
         GondolaController gondolaController = new GondolaController();
         OrdenController ordenController = new OrdenController();
 
-        // Crear instancias de las vistas con sus respectivos controladores
-        ArticuloView articuloView = new ArticuloView(articuloController);
-        GondolaView gondolaView = new GondolaView(gondolaController);
-        OrdenView ordenView = new OrdenView(ordenController);
-
-        // Asignar las vistas a sus respectivos controladores
-        articuloController.setView(articuloView);
-        gondolaController.setView(gondolaView);
-        ordenController.setView(ordenView);
-
         // Crear y mostrar la vista principal
         new SuperView(articuloController, gondolaController, ordenController);
+
+
+
     }
 }

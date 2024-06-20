@@ -43,10 +43,10 @@ public class OrdenController {
 
     public void eliminarOrden(int nroSerieArticulo) {
         Orden orden = ordenDAO.leerOrden(nroSerieArticulo);
-       if (orden != null){
-           ordenDAO.eliminarOrden(nroSerieArticulo);
-           actualizarVista();
-       }
+        if (orden != null){
+            ordenDAO.eliminarOrden(nroSerieArticulo);
+            actualizarVista();
+        }
     }
 
     public void mostrarOrdenes() {

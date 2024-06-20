@@ -11,11 +11,11 @@ public class OrdenDAO {
     public void crearOrden(Orden orden) {
         String query = "INSERT INTO ordenes (nroSerieArticulo, cantidadAComprar, fecha) VALUES (?, ?, ?)";
         try (Connection conn = DatabaseConnection.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(query)) {
-                stmt.setInt(1, orden.getNroSerieArticulo());
-                stmt.setInt(2, orden.getCantidadAComprar());
-                stmt.setDate(3, new java.sql.Date(orden.getFecha().getTime()));
-                stmt.executeUpdate();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, orden.getNroSerieArticulo());
+            stmt.setInt(2, orden.getCantidadAComprar());
+            stmt.setDate(3, new java.sql.Date(orden.getFecha().getTime()));
+            stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -26,12 +26,12 @@ public class OrdenDAO {
         Orden orden = null;
         String query = "SELECT * FROM ordenes WHERE nroSerieArticulo = ?";
         try (Connection conn = DatabaseConnection.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(query)) {
-                stmt.setInt(1, nroSerieArticulo);
-                try (ResultSet rs = stmt.executeQuery()) {
-                    if (rs.next()) {
-                        orden = new Orden(rs.getInt("nroSerieArticulo"), rs.getInt("cantidadAComprar"), rs.getDate("fecha"));
-                    }
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, nroSerieArticulo);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    orden = new Orden(rs.getInt("nroSerieArticulo"), rs.getInt("cantidadAComprar"), rs.getDate("fecha"));
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -43,12 +43,12 @@ public class OrdenDAO {
     public void actualizarOrden(Orden orden) {
         String query = "UPDATE ordenes SET  cantidadAComprar = ?, fecha = ? WHERE nroSerieArticulo = ?";
         try (Connection conn = DatabaseConnection.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(query)) {
-                stmt.setInt(1, orden.getCantidadAComprar());
-                stmt.setDate(2, new java.sql.Date(orden.getFecha().getTime()));
-                stmt.setInt(3,orden.getNroSerieArticulo());
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, orden.getCantidadAComprar());
+            stmt.setDate(2, new java.sql.Date(orden.getFecha().getTime()));
+            stmt.setInt(3,orden.getNroSerieArticulo());
 
-                stmt.executeUpdate();
+            stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -58,9 +58,9 @@ public class OrdenDAO {
     public void eliminarOrden(int nroSerieArticulo) {
         String query = "DELETE FROM ordenes WHERE nroSerieArticulo = ?";
         try (Connection conn = DatabaseConnection.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(query)) {
-                stmt.setInt(1, nroSerieArticulo);
-                stmt.executeUpdate();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, nroSerieArticulo);
+            stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -71,11 +71,11 @@ public class OrdenDAO {
         ArrayList<Orden> ordenes = new ArrayList<>();
         String query = "SELECT * FROM ordenes";
         try (Connection conn = DatabaseConnection.getConnection();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(query)) {
-                while (rs.next()) {
-                    Orden orden = new Orden( rs.getInt("nroSerieArticulo"), rs.getInt("cantidadAComprar"), rs.getDate("fecha"));
-                    ordenes.add(orden);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+            while (rs.next()) {
+                Orden orden = new Orden( rs.getInt("nroSerieArticulo"), rs.getInt("cantidadAComprar"), rs.getDate("fecha"));
+                ordenes.add(orden);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -87,12 +87,12 @@ public class OrdenDAO {
         ArrayList<Orden> ordenes = new ArrayList<>();
         String query = "SELECT * FROM ordenes WHERE fecha = ?";
         try (Connection conn = DatabaseConnection.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(query)) {
-                stmt.setDate(1, new java.sql.Date(fecha.getTime()));
-                try (ResultSet rs = stmt.executeQuery()) {
-                    while (rs.next()) {
-                        Orden orden = new Orden(rs.getInt("nroSerieArticulo"), rs.getInt("cantidadAComprar"), rs.getDate("fecha"));
-                        ordenes.add(orden);
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setDate(1, new java.sql.Date(fecha.getTime()));
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Orden orden = new Orden(rs.getInt("nroSerieArticulo"), rs.getInt("cantidadAComprar"), rs.getDate("fecha"));
+                    ordenes.add(orden);
                 }
             }
         } catch (SQLException e) {
@@ -105,10 +105,10 @@ public class OrdenDAO {
     public void actualizarCantidadAComprar(int nuevaCantidad,Orden orden) {
         String query = "UPDATE ordenes SET cantidadAComprar = ? WHERE nroSerieArticulo = ?";
         try (Connection conn = DatabaseConnection.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(query)) {
-                stmt.setInt(1, nuevaCantidad);
-                stmt.setInt(2, orden.getNroSerieArticulo());
-                stmt.executeUpdate();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, nuevaCantidad);
+            stmt.setInt(2, orden.getNroSerieArticulo());
+            stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -119,13 +119,13 @@ public class OrdenDAO {
         ArrayList<Orden> ordenes = new ArrayList<>();
         String query = "SELECT * FROM ordenes WHERE nroSerieArticulo = ?";
         try (Connection conn = DatabaseConnection.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(query)) {
-                stmt.setInt(1, nroSerieArticulo);
-                try (ResultSet rs = stmt.executeQuery()) {
-                    while (rs.next()) {
-                        Orden orden = new Orden(rs.getInt("nroSerieArticulo"), rs.getInt("cantidadAComprar"), rs.getDate("fecha"));
-                        ordenes.add(orden);
-                    }
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, nroSerieArticulo);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Orden orden = new Orden(rs.getInt("nroSerieArticulo"), rs.getInt("cantidadAComprar"), rs.getDate("fecha"));
+                    ordenes.add(orden);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
